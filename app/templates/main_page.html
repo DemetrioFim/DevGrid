@@ -3,58 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather Buddy</title>
+    <style>
+        .city {
+        background-color: white;
+        width: 10%;
+        }
+        .cities {
+        background: rgb(230, 242, 255);
+        width: 100%
+        }
+    </style>
 </head>
 <body>
     <div>
         <form method="POST">
-            <label for="input_city">How is the weather in </label>
-            {% if city %}
-                <input type="text" id="input_city" name="input_city" value={{ city[0] }}>
-            {% else %}
-                <input type="text" id="input_city" name="input_city">
-            {% endif %}
-            <label> now</label>
+            <div>
+                How is the weather in
+                {% if city %}
+                    <input  type="text" id="input_city" name="input_city" value={{ city[0] }}>
+                {% else %}
+                    <input type="text" id="input_city" name="input_city">
+                {% endif %}
+                 now
+            </div>
         </form>
     </div>
     {% if city %}
-        <div>
-            <table>
-                <tr>
-                    <td>
-                        {{ city[0] }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {{ city[1] }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        {{ city[2] }}
-                    </td>
-                </tr>
-            </table>
-            <br>
+        <div class="city">
+            <p>{{ city[0] }}</p>
+            <h1>{{ city[1] }}ºC</h1>
+            <p>{{ city[2] }}</p>
         </div>
-
-        <div>
+        <div class="cities">
             {% for item in list_cities %}
-                <div tableindex="0">
-                    <table>
-                        <tr>
-                            <td>{{ item[0] }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ item[1] }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ item[2] }}</td>
-                        </tr>
-                    </table>
+                <div class="city" style="float: left; margin-left:5%">
+                    <p>{{ item[0] }}</p>
+                    <h1>{{ item[1] }}ºC</h1>
+                    <p>{{ item[2] }}</p>
                 </div>
             {% endfor %}
         </div>
+
     {% endif %}
 
 

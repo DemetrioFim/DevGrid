@@ -19,7 +19,7 @@ def get_city(city_name, lang, units, TOKEN, list_cities=None, index=None):
     data = requests.get(url).json()
     temp = data['main']['temp']
     description = data['weather'][0]['description']
-    city_info = [city, temp, description]
+    city_info = [city, int(temp), description]
 
     if list_cities:
         list_cities[index] = city_info
