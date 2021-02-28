@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from weather_tools import get_city
+from weather_tools import get_city, get_standarted_info
 
 app = Flask(__name__)
 
@@ -9,17 +9,8 @@ def main_page():
         return render_template('main_page.html')
     elif request.method == 'POST':
         city_name = request.form['input_city']
-        city = get_city(city_name=city_name)
-
-        cities_names = ['London', 'Rio de Janeiro', 'Toronto', 'Dubai', 'New York']
-        list_cities = []
-        for name in cities_names:
-            city_name = get_city(city_name=name)
-            list_cities.append(city_name)
-
+        city, list_cities = get_standarted_info(city_name)
         return render_template('main_page.html', city=city, list_cities=list_cities)
-
-
 
 
 if __name__ == "__main__":
