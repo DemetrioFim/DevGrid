@@ -5,10 +5,23 @@
     <title>Weather Buddy</title>
 </head>
 <body>
-    {% if city %}
-        <p>How is the weather in {{ city }} now?</p>
-    {% else %}
-        <p>How is the weather in ______ now?</p>
-    {% endif %}
+    <div>
+        <form method="POST">
+            <label for="input_city">How is the weather in </label>
+            {% if city %}
+                <input type="text" id="input_city" name="input_city" value={{ city }}>
+            {% else %}
+                <input type="text" id="input_city" name="input_city">
+            {% endif %}
+            <label> now</label>
+        </form>
+    </div>
+    <div>
+        {% if city %}
+            <p>The city choiced is {{ city }}</p>
+        {% endif %}
+    </div>
+
+
 </body>
 </html>
