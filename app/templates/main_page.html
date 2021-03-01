@@ -3,40 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather Buddy</title>
-    <style>
-        .city {
-        background-color: white;
-        width: 10%;
-        }
-        .cities {
-        background: rgb(230, 242, 255);
-        width: 100%
-        }
-    </style>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main_page.css') }}">
 </head>
 <body>
     <div>
         <form method="POST">
-            <div>
+            <div class="form_input">
                 How is the weather in
                 {% if city %}
-                    <input  type="text" id="input_city" name="input_city" value={{ city[0] }}>
+                    <input class="input_city"  type="text" id="input_city" name="input_city" value={{ city[0] }}>
                 {% else %}
-                    <input type="text" id="input_city" name="input_city">
+                    <input class="input_city" type="text" id="input_city" name="input_city">
                 {% endif %}
                  now
             </div>
         </form>
     </div>
-    {% if city %}
-        <div class="city">
-            <p>{{ city[0] }}</p>
-            <h1>{{ city[1] }}ºC</h1>
-            <p>{{ city[2] }}</p>
+    {% if all_right %}
+        {% if city %}
+            <div class="city">
+                <p>{{ city[0] }}</p>
+                <h1>{{ city[1] }}ºC</h1>
+                <p>{{ city[2] }}</p>
+            </div>
+        {% endif %}
+    {% else %}
+        <div>
+            <h1 class="alert_error">Sorry. We couldn’t find the specified city.</h1>
         </div>
-        <div class="cities">
+    {% endif %}
+        <br>
+        <div class="background_cities">
             {% for item in list_cities %}
-                <div class="city" style="float: left; margin-left:5%">
+                <div class="cities">
                     <p>{{ item[0] }}</p>
                     <h1>{{ item[1] }}ºC</h1>
                     <p>{{ item[2] }}</p>
@@ -44,7 +43,7 @@
             {% endfor %}
         </div>
 
-    {% endif %}
+
 
 
 </body>

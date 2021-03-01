@@ -34,8 +34,15 @@ def get_standarted_info(city_name, lang='en', units='metric', TOKEN='68dcc09865f
     :param TOKEN: The token used to access the 'open weather api'.
     :return: The info of city than was setted and a list with 5 cities infos.
     """
-    city = get_city(city_name, lang=lang, units=units, TOKEN=TOKEN)
-    cities_names = ['London', 'Rio de Janeiro', 'Toronto', 'Dubai', 'New York']
+
+    try:
+        city = get_city(city_name, lang=lang, units=units, TOKEN=TOKEN)
+        all_right = True
+    except:
+        all_right = False
+        city = None
+
+    cities_names = ['London', 'Caxias do Sul', 'Toronto', 'Dubai', 'New York']
     list_cities = [None for _ in range(len(cities_names))]
     list_threads = []
     for key, name in enumerate(cities_names):
@@ -46,4 +53,4 @@ def get_standarted_info(city_name, lang='en', units='metric', TOKEN='68dcc09865f
     for thread in list_threads:
         thread.join()
 
-    return city, list_cities
+    return city, list_cities, all_right
