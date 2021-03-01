@@ -4,8 +4,24 @@
     <meta charset="UTF-8">
     <title>Weather Buddy</title>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main_page.css') }}">
+    <style>
+        .weather_buddy_header {
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            border-style: none none solid none;
+            border-bottom: 1px solid;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <div>
+        <h1 class="weather_buddy_header">
+            WEATHER BUDDY
+        </h1>
+    </div>
+    <br><br>
     <div>
         <form method="POST">
             <div class="form_input">
@@ -18,7 +34,7 @@
                  now
             </div>
         </form>
-    </div>
+    </div><br><br>
     {% if all_right %}
         {% if city %}
             <div class="city">
@@ -26,25 +42,22 @@
                 <h1>{{ city[1] }}ºC</h1>
                 <p>{{ city[2] }}</p>
             </div>
+            <br><br><br>
         {% endif %}
     {% else %}
         <div>
             <h1 class="alert_error">Sorry. We couldn’t find the specified city.</h1>
         </div>
+        <br><br><br>
     {% endif %}
-        <br>
-        <div class="background_cities">
-            {% for item in list_cities %}
-                <div class="cities">
-                    <p>{{ item[0] }}</p>
-                    <h1>{{ item[1] }}ºC</h1>
-                    <p>{{ item[2] }}</p>
-                </div>
-            {% endfor %}
-        </div>
-
-
-
-
+    <div class="background_cities">
+        {% for item in list_cities %}
+            <div class="cities">
+                <p>{{ item[0] }}</p>
+                <h1>{{ item[1] }}ºC</h1>
+                <p>{{ item[2] }}</p>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
