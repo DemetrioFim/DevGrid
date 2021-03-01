@@ -15,4 +15,5 @@ def main_page():
 
 
 if __name__ == "__main__":
+    # O host "0.0.0.0" foi inserido para rodar dentro do docker, caso queira rodar localmente, retirar o parâmetro host
     app.run(host="0.0.0.0")
