@@ -1,9 +1,5 @@
-FROM python:3.9-slim-buster
+FROM tiangolo/uwsgi-nginx-flask:python3.8
 
-WORKDIR /app
-COPY requirements.txt requirements.txt
-
-RUN pip3 install -r requirements.txt
-COPY . .
-
-CMD ['python3', 'app.py']
+COPY . /app
+RUN pip install -r requirements.txt
+CMD python app.py
